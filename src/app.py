@@ -172,9 +172,6 @@ def add_favorites_people():
 
 @app.route("/user/favorites-people/<int:favorite_id>", methods = ["DELETE"])
 def delete_favorite_people(favorite_id):
-    # recibir dentro del request body
-    # suponomes que el id del usuario lo tengo user_id = 1
-    # en mi query tengo que buscar por favorite_id y también por user_id 
     favorites = UserFavoritePeople.query.get(favorite_id)
     if favorites is None:
         raise APIException('Favorite not found', status_code=404)
