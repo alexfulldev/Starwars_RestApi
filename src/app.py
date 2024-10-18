@@ -55,7 +55,7 @@ def get_user():
 
 @app.route('/user', methods=['POST'])
 def post_user():
-    request_body: request.get_json()
+    request_body = request.get_json()
     user =  User(email = request_body['email'],
                  password = request_body['password'],
                  is_active = request_body['is_active'])
@@ -142,7 +142,7 @@ def post_favorite_planet():
 
 @app.route("/user/favorites-planets/<int:favorite_id>", methods = ["DELETE"])
 def delete_favorite_planet(favorite_id):
-    favorites = UserFavoritesPlanets.query.get(favorite_id)
+    favorites = UserFavoritePlanets.query.get(favorite_id)
     if favorites is None:
         raise APIException('Favorite not found', status_code=404)
     db.session.delete(favorites)
